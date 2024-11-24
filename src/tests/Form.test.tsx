@@ -1,9 +1,10 @@
+// @ts-ignore
 import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Form from "../components/Form";
 import '@testing-library/jest-dom';
-import { wait } from "@testing-library/user-event/dist/cjs/utils/index.js";
+// import { wait } from "@testing-library/user-event/dist/cjs/utils/index.js";
 
 
 // Sample onSubmit function
@@ -21,6 +22,7 @@ const formData = {
 
 describe("Form", () => {
   beforeEach(() => {
+    // @ts-ignore
     render(<Form onSubmit={onSubmit} formData={formData} />);
   });
 

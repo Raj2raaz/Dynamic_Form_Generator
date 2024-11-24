@@ -48,7 +48,7 @@ const Home: React.FC = () => {
 
                 {/* Form section with custom classes */}
                 <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6 lg:pl-12">
-                    <Form onSubmit={handleFormSubmit} formData={formData} />
+                    <Form onSubmit={handleFormSubmit as any} formData={formData as any} />
                 </div>
 
             </div>

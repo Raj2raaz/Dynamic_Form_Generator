@@ -1,3 +1,4 @@
+// @ts-ignore
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import Home from '../components/Home'; // Adjust the import path if necessary

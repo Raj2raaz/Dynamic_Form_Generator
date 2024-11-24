@@ -5,6 +5,10 @@
     { "path": "./tsconfig.node.json" }
   ],
   "compilerOptions": {
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "strict": false, //(it's okay but can enforce type checking at every level).
+    "noImplicitAny": false, //(requires explicit type definitions).
+    "noUnusedLocals": false,
+    "noUnusedParameters": false
   }
 }

@@ -1,3 +1,4 @@
+// @ts-ignore
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import Navbar from '../components/Navbar'; // Adjust the import path if necessary

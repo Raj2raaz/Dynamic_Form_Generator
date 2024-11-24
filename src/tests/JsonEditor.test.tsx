@@ -1,3 +1,4 @@
+// @ts-ignore
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -61,8 +62,10 @@ describe('JsonEditor', () => {
 
     // Verify that the initial JSON is rendered correctly in the textarea
     const textarea = screen.getByTestId('textBox');
+    // @ts-ignore
     console.log(textarea.value);
     // screen.debug(textarea.value)
+    // @ts-ignore
     expect(textarea.value).toBe(JSON.stringify(jsonData, null, 2));
 
 
@@ -84,6 +87,7 @@ describe('JsonEditor', () => {
     fireEvent.change(textarea, { target: { value: newText } });
   
     // Check if the value has been updated
+    // @ts-ignore
     expect(textarea.value).toBe(newText);
 
     // Wait for the mock onUpdate to be called

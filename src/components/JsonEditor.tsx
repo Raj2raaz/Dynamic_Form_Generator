@@ -1,7 +1,7 @@
 
 import React from "react";
 import { useState, useEffect } from "react";
-import ReactJson from "react-json-view"; // Assuming you're using react-json-view
+
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -47,39 +47,39 @@ const JsonEditor: React.FC<JsonEditorProps> = ({ jsonData, onUpdate }) => {
             // Ensure that onUpdate is NOT called when JSON is invalid
         }
     };
-    
-     
+
+
     const handleSave = () => {
         try {
             const parsedJson = JSON.parse(jsonInput);  // Parse the current input value
             onUpdate(JSON.stringify(parsedJson, null, 2)); // Save it as a string
         } catch (err) {
             setError("Invalid JSON format.");
-        }   
+        }
     };
 
     const handleDownloadJson = () => {
         // Validate JSON (This can be more complex if needed, for example by checking if required fields are filled)
         if (
-          jsonData.name &&
-          jsonData.email &&
-          jsonData.companySize &&
-          jsonData.industry &&
-          jsonData.timeline
+            jsonData.name &&
+            jsonData.email &&
+            jsonData.companySize &&
+            jsonData.industry &&
+            jsonData.timeline
         ) {
-          const blob = new Blob([JSON.stringify(jsonData, null, 2)], { type: "application/json" });
-          const url = URL.createObjectURL(blob);
-    
-          const a = document.createElement("a");
-          a.href = url;
-          a.download = "json-data.json";
-          a.click();
-    
-          URL.revokeObjectURL(url);
+            const blob = new Blob([JSON.stringify(jsonData, null, 2)], { type: "application/json" });
+            const url = URL.createObjectURL(blob);
+
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "json-data.json";
+            a.click();
+
+            URL.revokeObjectURL(url);
         } else {
-          toast.error("You must fill out the form completely and correctly before downloading the data.");
+            toast.error("You must fill out the form completely and correctly before downloading the data.");
         }
-      };
+    };
 
     return (
         <div>
@@ -95,26 +95,38 @@ const JsonEditor: React.FC<JsonEditorProps> = ({ jsonData, onUpdate }) => {
                 data-testid="textBox"
             />
             {error && <p className="text-red-500 text-sm mt-2 mb-5">{error}</p>}
-            <button
-                onClick={handleSave}
-                className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg"
-            >
-                Update JSON
-            </button>
-            <button
-          type="button"
-          onClick={handleDownloadJson}
-          className={`mx-4 px-4 py-2 rounded-lg ${
-            jsonData.name && jsonData.email && jsonData.companySize && jsonData.industry && jsonData.timeline
-              ? "bg-green-500 text-white"
-              : "bg-gray-300 text-gray-500"
-          }`}
-        >
-          Download JSON
-        </button>
-        <button type="reset" onClick={()=> setJsonInput(JSON.stringify(initialJsonData, null, 2))}>
+            <div className="flex flex-wrap justify-center gap-4 mt-4">
+    <button
+        onClick={handleSave}
+        className="px-4 py-2 bg-blue-500 text-white rounded-lg w-full sm:w-auto"
+    >
+        Update JSON
+    </button>
+
+    <button
+        type="button"
+        onClick={handleDownloadJson}
+        className={`w-full sm:w-auto px-4 py-2 rounded-lg ${
+            jsonData.name &&
+            jsonData.email &&
+            jsonData.companySize &&
+            jsonData.industry &&
+            jsonData.timeline
+                ? "bg-green-500 text-white"
+                : "bg-gray-300 text-gray-500"
+        }`}
+    >
+        Download JSON
+    </button>
+
+    <button
+        type="reset"
+        className="w-full sm:w-auto focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
+        onClick={() => setJsonInput(JSON.stringify(initialJsonData, null, 2))}
+    >
         Reset
-      </button>
+    </button>
+</div>
         </div>
     );
 };
